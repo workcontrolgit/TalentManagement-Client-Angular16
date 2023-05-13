@@ -7,7 +7,6 @@ import { DataTablesResponse } from '@shared/interfaces/data-tables-response';
 import { Logger } from '@app/core';
 
 import { Router, ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { NgIf, NgFor } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
 

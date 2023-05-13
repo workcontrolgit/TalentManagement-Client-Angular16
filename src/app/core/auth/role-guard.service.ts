@@ -2,7 +2,7 @@ import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ToastService } from '@app/services/toast/toast.service';
 
 @Injectable()
