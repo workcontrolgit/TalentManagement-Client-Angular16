@@ -7,6 +7,8 @@ import { DataTablesResponse } from '@shared/interfaces/data-tables-response';
 import { ModalService } from '@app/services/modal/modal.service';
 
 import { Logger } from '@app/core';
+import { NgIf, NgFor } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 
 const log = new Logger('Employee');
 
@@ -14,6 +16,8 @@ const log = new Logger('Employee');
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss'],
+  standalone: true,
+  imports: [DataTablesModule, NgIf, NgFor],
 })
 export class EmployeeListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
