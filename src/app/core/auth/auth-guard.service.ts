@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -8,7 +8,7 @@ import { ToastService } from '@app/services/toast/toast.service';
 import { Logger } from '@app/core';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard {
   profile: any;
   constructor(private toastService: ToastService, private authService: AuthService) {}
 
