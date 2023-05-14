@@ -10,7 +10,15 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, EmployeeRoutingModule, NgbNavModule, TranslateModule, SharedModule, DataTablesModule],
-  declarations: [EmployeeComponent, EmployeeListComponent],
+  imports: [
+    CommonModule,
+    EmployeeRoutingModule,
+    NgbNavModule,
+    TranslateModule,
+    SharedModule,
+    DataTablesModule,
+    EmployeeComponent,
+    EmployeeListComponent,
+  ],
 })
 export class EmployeeModule {}

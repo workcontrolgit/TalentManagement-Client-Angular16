@@ -6,14 +6,17 @@ import { ApiEndpointsService } from '@app/services/api/api-endpoints.service';
 import { DataTablesResponse } from '@shared/interfaces/data-tables-response';
 import { Logger } from '@app/core';
 
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 
 const log = new Logger('Position');
 @Component({
   selector: 'app-position-list',
   templateUrl: './position-list.component.html',
   styleUrls: ['./position-list.component.scss'],
+  standalone: true,
+  imports: [RouterLink, DataTablesModule, NgIf, NgFor],
 })
 export class PositionListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};

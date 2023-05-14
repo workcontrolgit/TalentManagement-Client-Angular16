@@ -1,12 +1,12 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ToastService } from '@app/services/toast/toast.service';
 
 @Injectable()
-export class RoleGuard implements CanActivate {
+export class RoleGuard {
   userProfile: any;
 
   constructor(private authService: AuthService, private toastService: ToastService) {}

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { merge } from 'rxjs';
@@ -8,6 +8,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { I18nService } from '@app/i18n';
+import { ToastsContainer } from './@shared/toast/toasts-container.component';
 
 const log = new Logger('App');
 
@@ -16,6 +17,8 @@ const log = new Logger('App');
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [RouterOutlet, ToastsContainer],
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(

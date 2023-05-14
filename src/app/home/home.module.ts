@@ -8,7 +8,6 @@ import { HomeComponent } from './home.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, SharedModule, HomeRoutingModule, NgbTooltipModule],
-  declarations: [HomeComponent],
+  imports: [CommonModule, TranslateModule, SharedModule, HomeRoutingModule, NgbTooltipModule, HomeComponent],
 })
 export class HomeModule {}
