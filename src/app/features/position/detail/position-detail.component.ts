@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Logger } from '@app/core';
 import { ApiHttpService } from '@app/services/api/api-http.service';
 import { ApiEndpointsService } from '@app/services/api/api-endpoints.service';
@@ -8,8 +8,10 @@ import { Position } from '@shared/interfaces/position';
 import { DataResponsePosition } from '@shared/interfaces/data-response-position';
 import { ModalService } from '@app/services/modal/modal.service';
 
-import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { RxwebValidators, RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ToastService } from '@app/services/toast/toast.service';
+import { NgIf } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 const log = new Logger('Detail');
 
@@ -17,6 +19,8 @@ const log = new Logger('Detail');
   selector: 'app-detail',
   templateUrl: './position-detail.component.html',
   styleUrls: ['./position-detail.component.scss'],
+  standalone: true,
+  imports: [ReactiveFormsModule, RxReactiveFormsModule, RouterLink, TranslateModule, NgIf],
 })
 export class PositionDetailComponent implements OnInit {
   formMode = 'New';
