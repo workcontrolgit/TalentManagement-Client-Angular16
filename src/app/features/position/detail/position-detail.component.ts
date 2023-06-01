@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Logger } from '@app/core';
 import { ApiHttpService } from '@app/services/api/api-http.service';
 import { ApiEndpointsService } from '@app/services/api/api-endpoints.service';
@@ -12,6 +12,7 @@ import { RxwebValidators, RxReactiveFormsModule } from '@rxweb/reactive-form-val
 import { ToastService } from '@app/services/toast/toast.service';
 import { NgIf } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 const log = new Logger('Detail');
 
@@ -20,21 +21,22 @@ const log = new Logger('Detail');
   templateUrl: './position-detail.component.html',
   styleUrls: ['./position-detail.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, RxReactiveFormsModule, RouterLink, TranslateModule, NgIf],
+  imports: [ReactiveFormsModule, RxReactiveFormsModule, CommonModule, RouterLink, TranslateModule, NgIf],
 })
 export class PositionDetailComponent implements OnInit {
   formMode = 'New';
   sub: any;
   id: any;
-  entryForm!: UntypedFormGroup;
+  entryForm!: FormGroup;
   error: string | undefined;
   position!: Position;
   isAddNew: boolean = false;
+  submitted = false;
 
   constructor(
     private toastService: ToastService,
     private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private apiHttpService: ApiHttpService,
     private apiEndpointsService: ApiEndpointsService,
     private modalService: ModalService
@@ -153,5 +155,10 @@ export class PositionDetailComponent implements OnInit {
       delay: 2000,
       autohide: true,
     });
+  }
+
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.entryForm.controls;
   }
 }
