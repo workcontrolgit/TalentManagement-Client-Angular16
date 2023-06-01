@@ -6,6 +6,7 @@ import { Employee } from '@shared/interfaces/employee';
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
   styleUrls: ['./employee-detail.component.scss'],
+  standalone: true,
 })
 export class EmployeeDetailComponent implements OnInit {
   @Input() title: string = 'Employee Detail';
