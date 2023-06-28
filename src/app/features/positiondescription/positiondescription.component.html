@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+          <span class="fs-5 d-none d-sm-inline">Position Description</span>
+        </a>
+        <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+          <li>
+            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Data</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-shop"></i> <span class="ms-1 d-none d-sm-inline">Introduction</span></a
+            >
+          </li>
+          <li>
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fa-brands fa-product-hunt"></i> <span class="ms-1 d-none d-sm-inline">Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-people-group"></i>
+              <span class="ms-1 d-none d-sm-inline">Factor Level Description</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="ms-1 d-none d-sm-inline">Evaluation Statement</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-check"></i> <span class="ms-1 d-none d-sm-inline">FLSA Worksheet</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-regular fa-image"></i> <span class="ms-1 d-none d-sm-inline">PDT</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-basket-shopping"></i> <span class="ms-1 d-none d-sm-inline">Summary</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-music"></i> <span class="ms-1 d-none d-sm-inline">Routing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-thumbs-up"></i> <span class="ms-1 d-none d-sm-inline">Approval</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col py-3">
+      <h3>Left Sidebar with Submenus</h3>
+      <p class="lead">
+        An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a
+        single menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in
+        width on smaller screens.
+      </p>
+      <ul class="list-unstyled">
+        <li>
+          <h5>Responsive</h5>
+          shrinks in width, hides text labels and collapses to icons only on mobile
+        </li>
+      </ul>
+
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button>
+
+      <hr />
+
+      <pre>{{ closeResult }}</pre>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title" id="offcanvas-basic-title">Positiondescription update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input
+            id="dateOfBirth"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+          />
+          <button class="btn btn-outline-secondary fa-regular fa-calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+    </form>
+    <div class="text-end">
+      <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
+    </div>
+  </div>
+</ng-template>

@@ -15,8 +15,8 @@ export const environment = {
   // Source code for API Project to run on localhost
   // https://github.com/workcontrolgit/TalentManagement-ApiResources-Net7
   // apiEndpoint: 'https://localhost:44378/api/v1',
-  apiEndpoint: 'https://cat-netcore-api.azurewebsites.net/api/v1',
-  apiMockEndpoint: 'https://cat-netcore-api.azurewebsites.net/api/v1',
+  apiEndpoint: 'https://apiresources.azurewebsites.net/api/v1',
+  apiMockEndpoint: 'https://apiresources.azurewebsites.net/api/v1',
   // settings for connection to Duende IdentityServer
   oidc: {
     // source code for Duende IdentityServer to run on localhost
@@ -25,9 +25,9 @@ export const environment = {
     issuer: 'https://cat-token-identity.azurewebsites.net', // demo IdentityServer in Azure
     clientId: 'TalentManagement', // client id setup in IdentityServer4
     responseType: 'code', //code flow PKCE
-    redirectUri: window.location.origin,
-    postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+    redirectUri: window.location.origin + '/TalentManagement-Client-Angular16',
+    postLogoutRedirectUri: window.location.origin + '/TalentManagement-Client-Angular16',
+    silentRefreshRedirectUri: window.location.origin + '/TalentManagement-Client-Angular16/silent-refresh.html',
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
     useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
     silentRefreshTimeout: 50000, // For faster testing
