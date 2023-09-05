@@ -15,5 +15,8 @@ export class AboutComponent implements OnInit {
 
   config?: string;
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(JSON.stringify(environment));
+    this.config = JSON.stringify(environment);
+  }
 }
