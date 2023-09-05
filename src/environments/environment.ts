@@ -18,7 +18,7 @@ export const config = envConfig as EnvConfig;
 
 export const environment = {
   production: false,
-  version: config['npm_package_version'] + '-dev',
+  version: env['npm_package_version'] + '-dev',
   serverChuckNorrisUrl: 'https://api.chucknorris.io',
   serverUrl: 'http://localhost:4200',
   defaultLanguage: 'en-US',
@@ -41,7 +41,7 @@ export const environment = {
     responseType: config.auth.responseType, //code flow PKCE
     redirectUri: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+    silentRefreshRedirectUri: window.location.origin + config.auth.silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
     useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
     silentRefreshTimeout: 50000, // For faster testing
