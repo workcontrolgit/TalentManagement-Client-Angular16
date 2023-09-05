@@ -1,0 +1,9 @@
+{
+  "environment": "development",
+  "version": "1.2.0",
+  "auth": {
+    "issuer": "https://cat-token-identity.azurewebsites.net",
+    "clientId": "TalentManagement",
+    "responseType": "code"
+  }
+}

@@ -4,7 +4,7 @@
  * For app-specific initialization, use `app/app.component.ts`.
  */
 
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode, importProvidersFrom, APP_INITIALIZER } from '@angular/core';
 
 import { environment } from '@env/environment';
 import { AppComponent } from './app/app.component';
@@ -20,13 +20,25 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { ApiPrefixInterceptor, ErrorHandlerInterceptor, RouteReusableStrategy, SharedModule } from '@shared';
 import { HTTP_INTERCEPTORS, withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
+import { EnvironmentLoaderService } from './app/core/config/environment-loader.service';
 
 if (environment.production) {
   enableProdMode();
 }
 
+const initAppFn = (envService: EnvironmentLoaderService) => {
+  return () => envService.loadEnvConfig('/assets/config/app-config.json');
+};
+
 bootstrapApplication(AppComponent, {
   providers: [
+    EnvironmentLoaderService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initAppFn,
+      multi: true,
+      deps: [EnvironmentLoaderService],
+    },
     importProvidersFrom(
       BrowserModule,
       ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
