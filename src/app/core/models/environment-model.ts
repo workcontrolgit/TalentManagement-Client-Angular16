@@ -16,5 +16,6 @@ export interface Auth {
 export interface EnvConfig {
   environment: string;
   apiEndpoint: string;
+  apiMockEndpoint: string;
   auth: Auth;
 }

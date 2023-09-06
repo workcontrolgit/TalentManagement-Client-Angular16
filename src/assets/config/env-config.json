@@ -2,8 +2,8 @@
   "environment": "development",
   "serverQuoteUrl": "https://api.chucknorris.io",
   "serverUrl": "http://localhost:4200",
-  "apiEndpoint": "https://cat-netcore-api.azurewebsites.net/api/v1",
-  "apiMockEndpoint": "https://cat-netcore-api.azurewebsites.net/api/v1",
+  "apiEndpoint": "https://apiresources.azurewebsites.net/api/v1",
+  "apiMockEndpoint": "https://apiresources.azurewebsites.net/api/v1",
   "auth": {
     "issuer": "https://cat-token-identity.azurewebsites.net",
     "clientId": "TalentManagement",
@@ -14,8 +14,8 @@
     "silentRefreshTimeout": 50000,
     "timeoutFactor": 0.25,
     "sessionChecksEnabled": false,
-    "showDebugInformation": "false",
-    "clearHashAfterLogin": "false",
-    "useSilentRnonceStateSeparatorefresh": "semicolon"
+    "showDebugInformation": false,
+    "clearHashAfterLogin": false,
+    "nonceStateSeparator": "semicolon"
   }
 }
