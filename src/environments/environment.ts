@@ -9,39 +9,46 @@
 // Note that as usual, any environment variables you expose through it will end up in your
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 import { env } from './.env';
+import { EnvConfig } from '../app/core/models/environment-model';
+import envConfig from '../assets/config/env-config.json';
+
+export const config = envConfig as EnvConfig;
+
+//import * as config from '../assets/config/app-config.json';
 
 export const environment = {
   production: false,
   version: env['npm_package_version'] + '-dev',
-  serverUrl: 'https://api.chucknorris.io',
+  serverQuoteUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
 
   // Source code for API Project to run on localhost
   // https://github.com/workcontrolgit/TalentManagement-ApiResources-Net7
-  apiEndpoint: 'https://localhost:44378/api/v1',
-  //apiEndpoint: 'https://cat-netcore-api.azurewebsites.net/api/v1', //demo API project in azure
+  // apiEndpoint: 'https://localhost:44378/api/v1',
+  apiEndpoint: 'https://cat-netcore-api.azurewebsites.net/api/v1', //demo API project in azure
   apiMockEndpoint: 'https://cat-netcore-api.azurewebsites.net/api/v1',
 
   // settings for connection to Duende IdentityServer
-  oidc: {
+  auth: {
     // source code for Duende IdentityServer to run on localhost
     // https://github.com/workcontrolgit/CATTokenService.AdminUI.Duende
-    issuer: 'https://localhost:44310', // running on localhost
-    // issuer: 'https://cat-token-identity.azurewebsites.net', // demo IdentityServer in Azure
-    clientId: 'TalentManagement', // client id setup in IdentityServer4
-    responseType: 'code', //code flow PKCE
+    // issuer: 'https://localhost:44310', // running on localhost
+    issuer: config.auth.issuer, // demo IdentityServer in Azure
+    clientId: config.auth.clientId, // client id setup in IdentityServer4
+    //responseType: 'code', //code flow PKCE
+    responseType: config.auth.responseType, //code flow PKCE
     redirectUri: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+    silentRefreshRedirectUri: window.location.origin + config.auth.silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
-    useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: 50000, // For faster testing
+    useSilentRefresh: config.auth.useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
+    silentRefreshTimeout: config.auth.silentRefreshTimeout, // For faster testing
     timeoutFactor: 0.25, // For faster testing
-    sessionChecksEnabled: false,
-    showDebugInformation: false, // Also requires enabling "Verbose" level in devtools
-    clearHashAfterLogin: false, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
-    nonceStateSeparator: 'semicolon', // Real semicolon gets mangled by IdentityServer's URI encoding
+    sessionChecksEnabled: config.auth.sessionChecksEnabled,
+    showDebugInformation: config.auth.showDebugInformation, // Also requires enabling "Verbose" level in devtools
+    clearHashAfterLogin: config.auth.clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+    nonceStateSeparator: config.auth.nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
 

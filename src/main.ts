@@ -4,7 +4,7 @@
  * For app-specific initialization, use `app/app.component.ts`.
  */
 
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode, importProvidersFrom, APP_INITIALIZER } from '@angular/core';
 
 import { environment } from '@env/environment';
 import { AppComponent } from './app/app.component';
