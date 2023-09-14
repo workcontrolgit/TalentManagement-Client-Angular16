@@ -18,8 +18,8 @@ export const environment = {
   // Source code for API Project to run on localhost
   // https://github.com/workcontrolgit/TalentManagement-ApiResources-Net7
   // apiEndpoint: 'https://localhost:44378/api/v1',
-  apiEndpoint: 'https://apiresources.azurewebsites.net/api/v1',
-  apiMockEndpoint: 'https://apiresources.azurewebsites.net/api/v1',
+  apiEndpoint: config.apiEndpoint, //demo API project in azure
+  apiMockEndpoint: config.apiMockEndpoint,
   // settings for connection to Duende IdentityServer
   auth: {
     // source code for Duende IdentityServer to run on localhost
