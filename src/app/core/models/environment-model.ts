@@ -1,4 +1,5 @@
 export interface Auth {
+  baseUrl: string;
   issuer: string;
   clientId: string;
   responseType: string;
@@ -17,5 +18,5 @@ export interface EnvConfig {
   environment: string;
   apiEndpoint: string;
   apiMockEndpoint: string;
-  auth: Auth;
+  auth: Auth[];
 }

@@ -1,3 +1,4 @@
+import { Auth } from './../app/core/models/environment-model';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -14,7 +15,19 @@ import envConfig from '../assets/config/env-config.json';
 
 export const config = envConfig as EnvConfig;
 
-//import * as config from '../assets/config/app-config.json';
+// export const filteredConfigAuth = config.auth.filter((auth) => auth.baseUrl =  getBaseUrl());
+
+export const ConfigAuth = config.auth;
+
+export const filteredConfigAuth = ConfigAuth.filter((Auth) => Auth.baseUrl === getBaseUrl());
+
+console.log(`Environment debug`);
+
+console.log(`getBaseUrl ` + getBaseUrl());
+
+console.log(`config ` + JSON.stringify(config));
+
+console.log(`filteredConfigAuth ` + JSON.stringify(filteredConfigAuth));
 
 export const environment = {
   production: false,
@@ -34,23 +47,26 @@ export const environment = {
     // source code for Duende IdentityServer to run on localhost
     // https://github.com/workcontrolgit/CATTokenService.AdminUI.Duende
     // issuer: 'https://localhost:44310', // running on localhost
-    issuer: config.auth.issuer, // demo IdentityServer in Azure
-    clientId: config.auth.clientId, // client id setup in IdentityServer4
-    //responseType: 'code', //code flow PKCE
-    responseType: config.auth.responseType, //code flow PKCE
+    issuer: filteredConfigAuth[0].issuer, // demo IdentityServer in Azure
+    clientId: config.auth[0].clientId, // client id setup in IdentityServer4
+    responseType: config.auth[0].responseType, //code flow PKCE
     redirectUri: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + config.auth.silentRefreshRedirectUri,
+    silentRefreshRedirectUri: window.location.origin + config.auth[0].silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
-    useSilentRefresh: config.auth.useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: config.auth.silentRefreshTimeout, // For faster testing
+    useSilentRefresh: config.auth[0].useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
+    silentRefreshTimeout: config.auth[0].silentRefreshTimeout, // For faster testing
     timeoutFactor: 0.25, // For faster testing
-    sessionChecksEnabled: config.auth.sessionChecksEnabled,
-    showDebugInformation: config.auth.showDebugInformation, // Also requires enabling "Verbose" level in devtools
-    clearHashAfterLogin: config.auth.clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
-    nonceStateSeparator: config.auth.nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
+    sessionChecksEnabled: config.auth[0].sessionChecksEnabled,
+    showDebugInformation: config.auth[0].showDebugInformation, // Also requires enabling "Verbose" level in devtools
+    clearHashAfterLogin: config.auth[0].clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+    nonceStateSeparator: config.auth[0].nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
+
+function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

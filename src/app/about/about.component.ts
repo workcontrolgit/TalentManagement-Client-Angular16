@@ -13,10 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class AboutComponent implements OnInit {
   version: string | null = environment.version;
 
-  config?: string;
-
   ngOnInit() {
     console.log(JSON.stringify(environment));
-    this.config = JSON.stringify(environment);
   }
 }
