@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '@env/environment';
 
 const routes = {
-  quote: (c: RandomQuoteContext) => environment.serverQuoteUrl + `/jokes/random?category=${c.category}`,
+  quote: (c: RandomQuoteContext) => environment.cloudApiUrl + `/jokes/random?category=${c.category}`,
 };
 
 export interface RandomQuoteContext {

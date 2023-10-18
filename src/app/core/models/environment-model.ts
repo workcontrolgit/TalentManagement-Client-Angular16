@@ -1,5 +1,7 @@
 export interface AppSetting {
   subEnvironment: string;
+  apiEndpoint: string;
+  apiMockEndpoint: string;
   issuer: string;
   clientId: string;
   responseType: string;
@@ -15,8 +17,6 @@ export interface AppSetting {
 }
 
 export interface EnvConfig {
-  environment: string;
-  apiEndpoint: string;
-  apiMockEndpoint: string;
+  cloudApiUrl: string;
   appSetting: AppSetting[];
 }

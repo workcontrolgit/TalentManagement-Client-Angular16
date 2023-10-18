@@ -5,45 +5,47 @@
 // Note that as usual, any environment variables you expose through it will end up in your
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 import { env } from './.env';
-import { EnvConfig } from '../app/core/models/environment-model';
+import { AppSetting, EnvConfig } from './../app/core/models/environment-model';
 import envConfigData from '../assets/config/env-config.json';
 
-export const config = envConfigData as EnvConfig;
+export const envConfig = envConfigData as EnvConfig;
 
-export const configAuth = config.appSetting;
+export const appSetting = envConfig.appSetting;
 
-export const filteredConfigAuth = configAuth.filter((setting) => setting.subEnvironment === getSubEnvironment());
+export const subEnvironmentSetting = appSetting.filter(
+  (setting: AppSetting) => setting.subEnvironment === getSubEnvironment()
+);
 
 export const environment = {
   production: true,
   version: env['npm_package_version'],
-  serverQuoteUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  cloudApiUrl: envConfig.cloudApiUrl,
   // Source code for API Project to run on localhost
   // https://github.com/workcontrolgit/TalentManagement-ApiResources-Net7
   // apiEndpoint: 'https://localhost:44378/api/v1',
-  apiEndpoint: config.apiEndpoint, //demo API project in azure
-  apiMockEndpoint: config.apiMockEndpoint,
+  apiEndpoint: subEnvironmentSetting[0].apiEndpoint, //demo API project in azure
+  apiMockEndpoint: subEnvironmentSetting[0].apiMockEndpoint,
   // settings for connection to Duende IdentityServer
   auth: {
     // source code for Duende IdentityServer to run on localhost
     // https://github.com/workcontrolgit/CATTokenService.AdminUI.Duende
     // issuer: 'https://localhost:44310', // running on localhost
-    issuer: filteredConfigAuth[0].issuer, // demo IdentityServer in Azure
-    clientId: config.appSetting[0].clientId, // client id setup in IdentityServer4
-    responseType: config.appSetting[0].responseType, //code flow PKCE
+    issuer: subEnvironmentSetting[0].issuer, // demo IdentityServer in Azure
+    clientId: subEnvironmentSetting[0].clientId, // client id setup in IdentityServer4
+    responseType: subEnvironmentSetting[0].responseType, //code flow PKCE
     redirectUri: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + config.appSetting[0].silentRefreshRedirectUri,
+    silentRefreshRedirectUri: window.location.origin + subEnvironmentSetting[0].silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
-    useSilentRefresh: config.appSetting[0].useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: config.appSetting[0].silentRefreshTimeout, // For faster testing
+    useSilentRefresh: subEnvironmentSetting[0].useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
+    silentRefreshTimeout: subEnvironmentSetting[0].silentRefreshTimeout, // For faster testing
     timeoutFactor: 0.25, // For faster testing
-    sessionChecksEnabled: config.appSetting[0].sessionChecksEnabled,
-    showDebugInformation: config.appSetting[0].showDebugInformation, // Also requires enabling "Verbose" level in devtools
-    clearHashAfterLogin: config.appSetting[0].clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
-    nonceStateSeparator: config.appSetting[0].nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
+    sessionChecksEnabled: subEnvironmentSetting[0].sessionChecksEnabled,
+    showDebugInformation: subEnvironmentSetting[0].showDebugInformation, // Also requires enabling "Verbose" level in devtools
+    clearHashAfterLogin: subEnvironmentSetting[0].clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+    nonceStateSeparator: subEnvironmentSetting[0].nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
 
