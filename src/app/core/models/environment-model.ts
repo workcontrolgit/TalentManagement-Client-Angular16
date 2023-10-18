@@ -1,5 +1,5 @@
-export interface Auth {
-  baseUrl: string;
+export interface AppSetting {
+  subEnvironment: string;
   issuer: string;
   clientId: string;
   responseType: string;
@@ -18,5 +18,5 @@ export interface EnvConfig {
   environment: string;
   apiEndpoint: string;
   apiMockEndpoint: string;
-  auth: Auth[];
+  appSetting: AppSetting[];
 }

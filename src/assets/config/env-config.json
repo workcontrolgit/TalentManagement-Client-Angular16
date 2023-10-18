@@ -3,9 +3,9 @@
   "serverQuoteUrl": "https://api.chucknorris.io",
   "apiEndpoint": "https://apiresources.azurewebsites.net/api/v1",
   "apiMockEndpoint": "https://apiresources.azurewebsites.net/api/v1",
-  "auth": [
+  "appSetting": [
     {
-      "baseUrl": "https://localhost:4200/",
+      "subEnvironment": "localhost",
       "issuer": "https://cat-token-identity.azurewebsites.net",
       "clientId": "TalentManagement",
       "responseType": "code",
@@ -20,7 +20,7 @@
       "nonceStateSeparator": "semicolon"
     },
     {
-      "baseUrl": "http://localhost:4200/",
+      "subEnvironment": "server",
       "issuer": "https://cat-token-identity.azurewebsites.net",
       "clientId": "TalentManagement",
       "responseType": "code",
