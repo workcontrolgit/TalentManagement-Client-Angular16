@@ -2,6 +2,10 @@ export interface AppSetting {
   subEnvironment: string;
   apiEndpoint: string;
   apiMockEndpoint: string;
+}
+
+export interface EnvironmentConfig {
+  externalApiUrl: string;
   issuer: string;
   clientId: string;
   responseType: string;
@@ -14,9 +18,5 @@ export interface AppSetting {
   showDebugInformation: boolean;
   clearHashAfterLogin: boolean;
   nonceStateSeparator: string;
-}
-
-export interface EnvConfig {
-  cloudApiUrl: string;
   appSetting: AppSetting[];
 }
