@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1701738342631,
+  "timestamp": 1701738667798,
   "index": "/TalentManagement-Client-Angular16/index.html",
   "assetGroups": [
     {
@@ -69,7 +69,7 @@
     "/TalentManagement-Client-Angular16/fa-solid-900.0b5caff7ad4bc179.ttf": "20bd663830188cbadd2264e1daf9497c3ffc3621",
     "/TalentManagement-Client-Angular16/fa-solid-900.3eae9857c06e9372.woff2": "6b99aa650bd12a36caa14e0127435d8f4cd3ba73",
     "/TalentManagement-Client-Angular16/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
-    "/TalentManagement-Client-Angular16/index.html": "adc080f845664be17214637732f94ac5703df8d3",
+    "/TalentManagement-Client-Angular16/index.html": "664e1e92d0aa2162768d7d7dc53cf1ab2f64125e",
     "/TalentManagement-Client-Angular16/main.a0267ea1ab2e849b.js": "4307396fb008e740a39e2de77a673b4697894b0d",
     "/TalentManagement-Client-Angular16/manifest.webmanifest": "66d78f5674d62af27dce88eb873a4967dca75406",
     "/TalentManagement-Client-Angular16/polyfills.521a8bbdadf2f953.js": "4cc642704dd619c06c5b8c86a911341d7a145f6c",
