@@ -14,6 +14,7 @@ export interface EnvironmentConfig {
   useSilentRefresh: boolean;
   silentRefreshTimeout: number;
   timeoutFactor: number;
+  strictDiscoveryDocumentValidation: boolean;
   sessionChecksEnabled: boolean;
   showDebugInformation: boolean;
   clearHashAfterLogin: boolean;

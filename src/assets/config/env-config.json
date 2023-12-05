@@ -1,6 +1,5 @@
 {
   "externalApiUrl": "https://api.chucknorris.io",
-  "issuer": "https://cat-token-identity.azurewebsites.net",
   "clientId": "TalentManagement",
   "responseType": "code",
   "silentRefreshRedirectUri": "/silent-refresh.html",
@@ -8,6 +7,7 @@
   "useSilentRefresh": true,
   "silentRefreshTimeout": 50000,
   "timeoutFactor": 0.25,
+  "strictDiscoveryDocumentValidation": false,
   "sessionChecksEnabled": false,
   "showDebugInformation": false,
   "clearHashAfterLogin": false,
@@ -16,12 +16,14 @@
     {
       "subEnvironment": "localhost",
       "apiEndpoint": "https://apiresources.azurewebsites.net/api/v1",
-      "apiMockEndpoint": "https://apiresources.azurewebsites.net/api/v1"
+      "apiMockEndpoint": "https://apiresources.azurewebsites.net/api/v1",
+      "issuer": "https://cat-token-identity.azurewebsites.net"
     },
     {
       "subEnvironment": "server",
-      "issuer": "https://cat-token-identity.azurewebsites.net",
-      "clientId": "TalentManagement"
+      "apiEndpoint": "https://apiresources.azurewebsites.net/api/v1",
+      "apiMockEndpoint": "https://apiresources.azurewebsites.net/api/v1",
+      "issuer": "https://cat-token-identity.azurewebsites.net"
     }
   ]
 }
