@@ -17,9 +17,12 @@ export const subEnvironmentSetting = appSetting.filter(
   (setting: AppSetting) => setting.subEnvironment === getSubEnvironment()
 );
 
+export const filteredConfigAuth = config.auth.filter((EnvConfig) => (EnvConfig.baseUrl = getBaseUrl()));
+
 export const environment = {
   production: true,
   version: env['npm_package_version'],
+  serverQuoteUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   externalApiUrl: envConfig.externalApiUrl,
@@ -49,3 +52,7 @@ export const environment = {
     nonceStateSeparator: envConfig.nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
+
+function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}

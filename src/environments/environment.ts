@@ -64,6 +64,10 @@ export const environment = {
   },
 };
 
+function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
