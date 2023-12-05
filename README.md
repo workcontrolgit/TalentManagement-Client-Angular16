@@ -1,6 +1,6 @@
 # Blog post
 
-[Fullstack Angular 15, Bootstrap 5 & .NET 7 API: Project Demo](https://medium.com/scrum-and-coke/full-stack-angular-15-bootstrap-5-net-7-api-563227ef7a20)
+[Complete Source Code of Angular 16 and C# NetCore 7 Web API Sample Project](https://medium.com/scrum-and-coke/complete-source-code-of-angular-16-and-c-netcore-7-web-api-sample-project-69bdf644afd0)
 
 # Talent Management Demo
 
