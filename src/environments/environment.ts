@@ -12,8 +12,9 @@ import { AppSetting, EnvironmentConfig } from './../app/core/models/environment-
 import { env } from './.env';
 import envConfigData from '../assets/config/env-config.json';
 
+// read the json and assign to EnvironmentConfig interface
 export const envConfig = envConfigData as EnvironmentConfig;
-
+// get appSetting
 export const appSetting = envConfig.appSetting;
 
 export const subEnvironmentSetting = appSetting.filter(
