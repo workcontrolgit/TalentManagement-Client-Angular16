@@ -1,9 +1,14 @@
 # Blog post
-[Fullstack Angular 15, Bootstrap 5 & .NET 7 API: Project Demo](https://medium.com/scrum-and-coke/full-stack-angular-15-bootstrap-5-net-7-api-563227ef7a20)
-# Talent Management
 
-This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
-version 11.0.0
+[Complete Source Code of Angular 16 and C# NetCore 7 Web API Sample Project](https://medium.com/scrum-and-coke/complete-source-code-of-angular-16-and-c-netcore-7-web-api-sample-project-69bdf644afd0)
+
+# Talent Management Demo
+
+GitHub Page: https://workcontrolgit.github.io/TalentManagement-Client-Angular16
+
+# ng deploy command
+
+ng deploy --base-href "/TalentManagement-Client-Angular16/"
 
 # Getting started
 

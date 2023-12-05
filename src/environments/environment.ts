@@ -1,4 +1,4 @@
-import { Auth } from './../app/core/models/environment-model';
+import { AppSetting, EnvironmentConfig } from './../app/core/models/environment-model';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -10,57 +10,57 @@ import { Auth } from './../app/core/models/environment-model';
 // Note that as usual, any environment variables you expose through it will end up in your
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 import { env } from './.env';
-import { EnvConfig } from '../app/core/models/environment-model';
-import envConfig from '../assets/config/env-config.json';
+import { baseUrl, getSubEnvironment, stripTrailingSlash } from './env-helper';
+import envConfigData from '../assets/config/env-config.json';
 
-export const config = envConfig as EnvConfig;
+// read the json and assign to EnvironmentConfig interface
+export const envConfig = envConfigData as EnvironmentConfig;
+// get appSetting
+export const appSetting = envConfig.appSetting;
 
-// export const filteredConfigAuth = config.auth.filter((auth) => auth.baseUrl =  getBaseUrl());
-
-export const ConfigAuth = config.auth;
-
-export const filteredConfigAuth = ConfigAuth.filter((Auth) => Auth.baseUrl === getBaseUrl());
+export const subEnvironmentSetting = appSetting.filter(
+  (setting: AppSetting) => setting.subEnvironment === getSubEnvironment()
+);
 
 console.log(`Environment debug`);
 
-console.log(`getBaseUrl ` + getBaseUrl());
+console.log(`Sub Environment ` + getSubEnvironment());
 
-console.log(`config ` + JSON.stringify(config));
+console.log(`envConfig ` + JSON.stringify(envConfig));
 
-console.log(`filteredConfigAuth ` + JSON.stringify(filteredConfigAuth));
+console.log(`subEnvironmentSetting ` + JSON.stringify(subEnvironmentSetting));
 
 export const environment = {
   production: false,
   version: env['npm_package_version'] + '-dev',
-  serverQuoteUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
-
+  externalApiUrl: envConfig.externalApiUrl,
   // Source code for API Project to run on localhost
   // https://github.com/workcontrolgit/TalentManagement-ApiResources-Net7
   // apiEndpoint: 'https://localhost:44378/api/v1',
-  apiEndpoint: config.apiEndpoint, //demo API project in azure
-  apiMockEndpoint: config.apiMockEndpoint,
+  apiEndpoint: subEnvironmentSetting[0].apiEndpoint, //demo API project in azure
+  apiMockEndpoint: subEnvironmentSetting[0].apiMockEndpoint,
 
   // settings for connection to Duende IdentityServer
   auth: {
     // source code for Duende IdentityServer to run on localhost
     // https://github.com/workcontrolgit/CATTokenService.AdminUI.Duende
     // issuer: 'https://localhost:44310', // running on localhost
-    issuer: filteredConfigAuth[0].issuer, // demo IdentityServer in Azure
-    clientId: config.auth[0].clientId, // client id setup in IdentityServer4
-    responseType: config.auth[0].responseType, //code flow PKCE
-    redirectUri: window.location.origin,
-    postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + config.auth[0].silentRefreshRedirectUri,
+    issuer: subEnvironmentSetting[0].issuer, // demo IdentityServer in Azure
+    clientId: envConfig.clientId, // client id setup in IdentityServer4
+    responseType: envConfig.responseType, //code flow PKCE
+    redirectUri: stripTrailingSlash(baseUrl()),
+    postLogoutRedirectUri: stripTrailingSlash(baseUrl()),
+    silentRefreshRedirectUri: stripTrailingSlash(baseUrl()) + envConfig.silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
-    useSilentRefresh: config.auth[0].useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: config.auth[0].silentRefreshTimeout, // For faster testing
-    timeoutFactor: 0.25, // For faster testing
-    sessionChecksEnabled: config.auth[0].sessionChecksEnabled,
-    showDebugInformation: config.auth[0].showDebugInformation, // Also requires enabling "Verbose" level in devtools
-    clearHashAfterLogin: config.auth[0].clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
-    nonceStateSeparator: config.auth[0].nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
+    useSilentRefresh: envConfig.useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
+    silentRefreshTimeout: envConfig.silentRefreshTimeout, // For faster testing
+    timeoutFactor: envConfig.timeoutFactor, // For faster testing
+    sessionChecksEnabled: envConfig.sessionChecksEnabled,
+    showDebugInformation: envConfig.showDebugInformation, // Also requires enabling "Verbose" level in devtools
+    clearHashAfterLogin: envConfig.clearHashAfterLogin, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+    nonceStateSeparator: envConfig.nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
 
