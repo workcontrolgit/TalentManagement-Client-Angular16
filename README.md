@@ -4,7 +4,11 @@
 
 # Talent Management Demo
 
-GitHub Page: https://workcontrolgit.github.io/TalentManagement-Client-Angular16/home
+GitHub Page: https://workcontrolgit.github.io/TalentManagement-Client-Angular16
+
+# ng deploy command
+
+ng deploy --base-href "/TalentManagement-Client-Angular16/"
 
 # Getting started
 

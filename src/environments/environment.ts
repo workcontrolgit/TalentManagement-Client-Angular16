@@ -10,6 +10,7 @@ import { AppSetting, EnvironmentConfig } from './../app/core/models/environment-
 // Note that as usual, any environment variables you expose through it will end up in your
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 import { env } from './.env';
+import { baseUrl, getSubEnvironment, stripTrailingSlash } from './env-helper';
 import envConfigData from '../assets/config/env-config.json';
 
 // read the json and assign to EnvironmentConfig interface
@@ -49,9 +50,9 @@ export const environment = {
     issuer: envConfig.issuer, // demo IdentityServer in Azure
     clientId: envConfig.clientId, // client id setup in IdentityServer4
     responseType: envConfig.responseType, //code flow PKCE
-    redirectUri: window.location.origin,
-    postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + envConfig.silentRefreshRedirectUri,
+    redirectUri: stripTrailingSlash(baseUrl()),
+    postLogoutRedirectUri: stripTrailingSlash(baseUrl()),
+    silentRefreshRedirectUri: stripTrailingSlash(baseUrl()) + envConfig.silentRefreshRedirectUri,
     scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
     useSilentRefresh: envConfig.useSilentRefresh, // Needed for Code Flow to suggest using iframe-based refreshes
     silentRefreshTimeout: envConfig.silentRefreshTimeout, // For faster testing
@@ -62,14 +63,6 @@ export const environment = {
     nonceStateSeparator: envConfig.nonceStateSeparator, // Real semicolon gets mangled by IdentityServer's URI encoding
   },
 };
-
-function baseUrl() {
-  return document.getElementsByTagName('base')[0].href;
-}
-
-function getSubEnvironment() {
-  return baseUrl().includes('localhost') ? 'localhost' : 'server';
-}
 
 /*
  * For easier debugging in development mode, you can import the following file
