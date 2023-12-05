@@ -47,7 +47,7 @@ export const environment = {
     // source code for Duende IdentityServer to run on localhost
     // https://github.com/workcontrolgit/CATTokenService.AdminUI.Duende
     // issuer: 'https://localhost:44310', // running on localhost
-    issuer: envConfig.issuer, // demo IdentityServer in Azure
+    issuer: subEnvironmentSetting[0].issuer, // demo IdentityServer in Azure
     clientId: envConfig.clientId, // client id setup in IdentityServer4
     responseType: envConfig.responseType, //code flow PKCE
     redirectUri: stripTrailingSlash(baseUrl()),

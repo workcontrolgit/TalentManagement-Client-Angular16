@@ -2,11 +2,11 @@ export interface AppSetting {
   subEnvironment: string;
   apiEndpoint: string;
   apiMockEndpoint: string;
+  issuer: string;
 }
 
 export interface EnvironmentConfig {
   externalApiUrl: string;
-  issuer: string;
   clientId: string;
   responseType: string;
   silentRefreshRedirectUri: string;
